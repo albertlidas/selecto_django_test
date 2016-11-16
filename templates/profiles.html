@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selecto test</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="col-md-6 col-md-offset-3">
+<form class="input-group" action="{% url 'profiles_view' %}" method="get" accept-charset="utf-8">
+    <input type="text" placeholder="Type here... " class="input form-control" name="q">
+    <span class="input-group-btn">
+            <button type="submit" class="btn btn btn-primary"><i class="fa fa-search"></i> GO</button>
+    </span>
+</form>
+
+
+<form class="input-group" action="{% url 'profiles_view' %}" method="get" accept-charset="utf-8">
+    <select name="ordering">
+        <option selected="selected" disabled>Ordering:</option>
+        <option value="created_asc">Date Created ASC</option>
+        <option value="created_desc">Date Created DESC</option>
+        <option value="comments_asc">Comments ASC</option>
+        <option value="comments_desc">Comments DESC</option>
+    </select>
+    <input type="submit" value="Select">
+
+</form>
+<hr>
+
+<h1>Users</h1>
+{% for p in profiles %}
+
+<h3>Name: {{ p.first_name }} {{p.last_name}}</h3>
+
+<p>Phone:{{p.phone}}</p>
+
+<p>Address: {{p.address}}</p>
+
+<p>Date created: {{p.date_created}}</p>
+
+<h4>Last comment:</h4>
+
+<p>{{p.last_comment}}</p>
+
+<p>Comments count: {{p.comments_count}}</p>
+{% empty %}
+<p>No Data</p>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>
